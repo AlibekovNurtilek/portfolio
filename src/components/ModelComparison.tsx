@@ -1,3 +1,4 @@
+//ModelComparison.tsx
 import { Card } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -11,57 +12,62 @@ const mainMetrics = [
 
 const ModelComparison = () => {
   return (
-    <section id="comparison" className="py-20 bg-secondary">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="comparison" className="relative py-24 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-1/4 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
+      </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 text-center">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 text-center">
             Сравнение моделей
           </h2>
-          <p className="text-lg text-muted-foreground mb-8 text-center max-w-3xl mx-auto">
+          <p className="text-lg text-gray-400 mb-8 text-center max-w-3xl mx-auto">
             AITilchi превосходит ведущие LLM модели в морфологическом анализе кыргызского языка
           </p>
           
-          <div className="mb-8 p-6 bg-primary/5 border border-primary/20 rounded-lg">
-            <h3 className="text-xl font-semibold text-foreground mb-3">Ключевые метрики:</h3>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-muted-foreground">
-              <li><strong className="text-foreground">UPOS</strong> — универсальные части речи</li>
-              <li><strong className="text-foreground">XPOS</strong> — части речи специфичные для кыргызского</li>
-              <li><strong className="text-foreground">UFeats</strong> — грамматические свойства</li>
-              <li><strong className="text-foreground">Lemmas</strong> — лемматизация (корни слов)</li>
-              <li><strong className="text-foreground">AllTags</strong> — общая точность по всем параметрам</li>
+          <div className="mb-8 p-6 bg-slate-900/60 backdrop-blur border border-slate-700/60 rounded-lg">
+            <h3 className="text-xl font-semibold text-white mb-3">Ключевые метрики:</h3>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-400">
+              <li><strong className="text-white">UPOS</strong> — универсальные части речи</li>
+              <li><strong className="text-white">XPOS</strong> — части речи специфичные для кыргызского</li>
+              <li><strong className="text-white">UFeats</strong> — грамматические свойства</li>
+              <li><strong className="text-white">Lemmas</strong> — лемматизация (корни слов)</li>
+              <li><strong className="text-white">AllTags</strong> — общая точность по всем параметрам</li>
             </ul>
           </div>
 
-          <Card className="p-6 bg-card border-border mb-8">
-            <h3 className="text-2xl font-semibold text-card-foreground mb-6 text-center">
+          <Card className="p-6 bg-slate-900/60 backdrop-blur border border-slate-700/60 hover:border-purple-400/50 transition-colors mb-8">
+            <h3 className="text-2xl font-semibold text-white mb-6 text-center">
               Основные метрики производительности
             </h3>
             <ResponsiveContainer width="100%" height={400}>
               <BarChart data={mainMetrics} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
-                <XAxis dataKey="name" />
-                <YAxis domain={[0, 100]} />
+                <CartesianGrid strokeDasharray="3 3" opacity={0.15} stroke="#94a3b8" />
+                <XAxis dataKey="name" stroke="#94a3b8" />
+                <YAxis domain={[0, 100]} stroke="#94a3b8" />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'hsl(var(--card))',
                     border: '1px solid hsl(var(--border))',
                     borderRadius: '8px'
                   }}
+                  labelStyle={{ color: 'hsl(var(--foreground))' }}
+                  itemStyle={{ color: 'hsl(var(--foreground))' }}
                 />
-                <Legend />
-                <Bar dataKey="OpenAI" fill="#10a37f" />
-                <Bar dataKey="Gemini" fill="#8e44ad" />
-                <Bar dataKey="Anthropic" fill="#e67e22" />
-                <Bar dataKey="DeepSeek" fill="#3498db" />
-                <Bar dataKey="AITilchi" fill="hsl(var(--primary))" radius={[8, 8, 0, 0]} />
+                <Legend wrapperStyle={{ color: '#e5e7eb' }} />
+                <Bar dataKey="OpenAI" fill="#22d3ee" />
+                <Bar dataKey="Gemini" fill="#a78bfa" />
+                <Bar dataKey="Anthropic" fill="#f59e0b" />
+                <Bar dataKey="DeepSeek" fill="#60a5fa" />
+                <Bar dataKey="AITilchi" fill="#34d399" radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </Card>
 
           <div className="text-center">
-            <div className="inline-flex items-center gap-3 px-6 py-4 bg-primary/10 border border-primary rounded-lg">
-              <span className="text-3xl font-bold text-primary">90.48%</span>
-              <span className="text-muted-foreground">Средняя точность AITilchi по всем тегам</span>
+            <div className="inline-flex items-center gap-3 px-6 py-4 bg-purple-500/15 border border-purple-500/30 rounded-lg backdrop-blur">
+              <span className="text-3xl font-bold text-purple-300">90.48%</span>
+              <span className="text-gray-400">Средняя точность AITilchi по всем тегам</span>
             </div>
           </div>
         </div>
