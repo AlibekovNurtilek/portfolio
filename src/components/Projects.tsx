@@ -35,8 +35,8 @@ const Projects = () => {
   return (
     <section id="projects" className="relative py-24 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-24 -left-24 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-24 left-24 w-60 h-60 bg-purple-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-24 right-24 w-60 h-60 bg-cyan-500/20 rounded-full blur-3xl" />
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-6xl mx-auto">

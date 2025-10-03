@@ -7,7 +7,7 @@ const Contact = () => {
   return (
     <section id="contact" className="relative py-24 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-24 left-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
+        <div className="absolute -top-36 left-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
         <div className="absolute -bottom-24 right-0 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">

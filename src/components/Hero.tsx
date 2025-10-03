@@ -124,12 +124,12 @@ const Hero = () => {
               </div>
               
               {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-purple-500/20 rounded-lg backdrop-blur-sm border border-purple-500/30 flex items-center justify-center animate-bounce-slow">
+              {/* <div className="absolute -top-4 -right-4 w-20 h-20 bg-purple-500/20 rounded-lg backdrop-blur-sm border border-purple-500/30 flex items-center justify-center animate-bounce-slow">
                 <Code2 className="w-10 h-10 text-purple-400" />
               </div>
               <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-cyan-500/20 rounded-lg backdrop-blur-sm border border-cyan-500/30 flex items-center justify-center animate-bounce-slow animation-delay-1000">
                 <Sparkles className="w-10 h-10 text-cyan-400" />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

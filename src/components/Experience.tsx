@@ -3,19 +3,9 @@ import { Briefcase } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const experiences = [
+
   {
     period: "2023 — 2024",
-    title: "Основатель и ML Engineer",
-    company: "Стартап AITilchi",
-    description: "Разработка морфологического анализатора для кыргызского языка. Достигнута точность 90%+, превосходящая OpenAI, Gemini, Claude и DeepSeek.",
-    achievements: [
-      "Создание уникальной модели с точностью 92% по UPOS",
-      "Полный цикл разработки: сбор данных, обучение, деплой",
-      "Data Engineering пайплайны для обработки текстов"
-    ]
-  },
-  {
-    period: "2022 — 2023",
     title: ".NET Backend Developer",
     company: "Sigma Software",
     description: "Разработка серверной части мобильного приложения для изучения английского языка.",
@@ -26,7 +16,18 @@ const experiences = [
     ]
   },
   {
-    period: "2021 — 2022",
+    period: "09.2024–05.2025",
+    title: "Основатель и AITilchi",
+    company: "Стартап AITilchi",
+    description: "Разработка морфологического анализатора для кыргызского языка. Достигнута точность 90%+, превосходящая OpenAI, Gemini, Claude и DeepSeek.",
+    achievements: [
+      "Создание уникальной модели с точностью 92% по UPOS",
+      "Полный цикл разработки: сбор данных, обучение, деплой",
+      "Data Engineering пайплайны для обработки текстов"
+    ]
+  },
+  {
+    period: "04.2025 — 10.2025",
     title: "Full Stack ML Engineer",
     company: "Ulut Soft",
     description: "Разработка и улучшение систем TTS, ASR и LLM. Автоматизация сбора данных и деплоя моделей.",
@@ -43,8 +44,8 @@ const Experience = () => {
   return (
     <section id="experience" className="relative py-24 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-24 right-0 w-72 h-72 bg-pink-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-24 right-0 w-60 h-60 bg-pink-500/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-36 left-0 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-4xl mx-auto">

@@ -1,5 +1,12 @@
 //ModelComparison.tsx
 import { Card } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const mainMetrics = [
@@ -11,10 +18,35 @@ const mainMetrics = [
 ];
 
 const ModelComparison = () => {
+  const renderBarChart = (data: any[], height: number = 400) => (
+    <ResponsiveContainer width="100%" height={height}>
+      <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <CartesianGrid strokeDasharray="3 3" opacity={0.15} stroke="#94a3b8" />
+        <XAxis dataKey="name" stroke="#94a3b8" />
+        <YAxis domain={[0, 100]} stroke="#94a3b8" />
+        <Tooltip 
+          contentStyle={{ 
+            backgroundColor: 'hsl(var(--card))',
+            border: '1px solid hsl(var(--border))',
+            borderRadius: '8px'
+          }}
+          labelStyle={{ color: 'hsl(var(--foreground))' }}
+          itemStyle={{ color: 'hsl(var(--foreground))' }}
+        />
+        <Legend wrapperStyle={{ color: '#e5e7eb' }} />
+        <Bar dataKey="OpenAI" fill="#22d3ee" />
+        <Bar dataKey="Gemini" fill="#a78bfa" />
+        <Bar dataKey="Anthropic" fill="#f59e0b" />
+        <Bar dataKey="DeepSeek" fill="#60a5fa" />
+        <Bar dataKey="AITilchi" fill="#34d399" radius={[8, 8, 0, 0]} />
+      </BarChart>
+    </ResponsiveContainer>
+  );
+
   return (
     <section id="comparison" className="relative py-24 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-1/4 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-16 left-24 w-60 h-60 bg-cyan-500/20 rounded-full blur-3xl" />
       </div>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-6xl mx-auto">
@@ -36,33 +68,50 @@ const ModelComparison = () => {
             </ul>
           </div>
 
-          <Card className="p-6 bg-slate-900/60 backdrop-blur border border-slate-700/60 hover:border-purple-400/50 transition-colors mb-8">
-            <h3 className="text-2xl font-semibold text-white mb-6 text-center">
+          {/* Desktop: Full Chart */}
+          <div className="hidden md:block mb-8">
+            <Card className="p-6 bg-slate-900/60 backdrop-blur border border-slate-700/60 hover:border-purple-400/50 transition-colors">
+              <h3 className="text-2xl font-semibold text-white mb-6 text-center">
+                Основные метрики производительности
+              </h3>
+              {renderBarChart(mainMetrics)}
+            </Card>
+          </div>
+
+          {/* Mobile: Carousel of Individual Metrics */}
+          <div className="block md:hidden mb-8">
+            <h3 className="text-xl font-semibold text-white mb-4 text-center">
               Основные метрики производительности
             </h3>
-            <ResponsiveContainer width="100%" height={400}>
-              <BarChart data={mainMetrics} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" opacity={0.15} stroke="#94a3b8" />
-                <XAxis dataKey="name" stroke="#94a3b8" />
-                <YAxis domain={[0, 100]} stroke="#94a3b8" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'hsl(var(--card))',
-                    border: '1px solid hsl(var(--border))',
-                    borderRadius: '8px'
-                  }}
-                  labelStyle={{ color: 'hsl(var(--foreground))' }}
-                  itemStyle={{ color: 'hsl(var(--foreground))' }}
-                />
-                <Legend wrapperStyle={{ color: '#e5e7eb' }} />
-                <Bar dataKey="OpenAI" fill="#22d3ee" />
-                <Bar dataKey="Gemini" fill="#a78bfa" />
-                <Bar dataKey="Anthropic" fill="#f59e0b" />
-                <Bar dataKey="DeepSeek" fill="#60a5fa" />
-                <Bar dataKey="AITilchi" fill="#34d399" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </Card>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: false,
+              }}
+              className="w-full relative"
+            >
+              <CarouselContent className="-ml-1">
+                {mainMetrics.map((metric, index) => (
+                  <CarouselItem key={index} className="pl-1 basis-full">
+                    <div className="p-1">
+                      <Card className="bg-slate-900/60 backdrop-blur border border-slate-700/60 h-[400px]">
+                        <div className="p-4 pb-2">
+                          <h4 className="text-lg font-semibold text-white text-center mb-2">
+                            {metric.name}
+                          </h4>
+                        </div>
+                        <div className="p-4 pt-0 flex-1">
+                          {renderBarChart([metric], 300)}
+                        </div>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="h-8 w-8 border border-slate-700/60 bg-white hover:bg-slate-700/50 absolute left-2 top-1/2 -translate-y-1/2" />
+              <CarouselNext className="h-8 w-8 border border-slate-700/60 bg-white hover:bg-slate-700/50 absolute right-2 top-1/2 -translate-y-1/2" />
+            </Carousel>
+          </div>
 
           <div className="text-center">
             <div className="inline-flex items-center gap-3 px-6 py-4 bg-purple-500/15 border border-purple-500/30 rounded-lg backdrop-blur">
